@@ -8,6 +8,7 @@ import random
 
 class TwoCols:
     thing = 0
+    nextTime = 0
     def __init__(self, app):
         self.app = app
         self.col1 = Column(int(self.app.width/3), self.app)
@@ -16,9 +17,17 @@ class TwoCols:
     def move(self):
         self.col1.move()
         self.col2.move()
+        if self.nextTime == 0:
+            self.nextTime = self.thing + random.randint(50, 300)
+        
         self.thing += 1
+<<<<<<< HEAD
         if self.thing % 400 == 0:
+=======
+        if self.thing == self.nextTime:
+>>>>>>> 3e4a29c05d4bfb6bf98136e20533550fc64d30e0
             self.generateNewNotes()
+            self.nextTime = 0
 
     def generateNewNotes(self):
         if random.randint(1,2) == 1:
