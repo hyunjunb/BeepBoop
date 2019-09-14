@@ -4,7 +4,7 @@ import pygame
 
 class Clicker:
 	time = 0
-	limit = 1000
+	limit = 600
 
 	def __init__(self, color, position, key, app, col):
 		#red = (255, 58, 44); green = (27, 239, 104)

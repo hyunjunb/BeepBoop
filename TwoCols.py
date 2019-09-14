@@ -21,11 +21,7 @@ class TwoCols:
             self.nextTime = self.thing + random.randint(50, 300)
         
         self.thing += 1
-<<<<<<< HEAD
         if self.thing % 400 == 0:
-=======
-        if self.thing == self.nextTime:
->>>>>>> 3e4a29c05d4bfb6bf98136e20533550fc64d30e0
             self.generateNewNotes()
             self.nextTime = 0
 
