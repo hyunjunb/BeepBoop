@@ -8,12 +8,13 @@ class Column:
         self.app = app
         self.center = center
         self.notes = []
-        note = Note(self.app, self.center)
-        self.notes.append(note)
 
     def move(self):
         for note in self.notes:
-            note.move()
+            if note.ypos > self.app.height:
+                self.notes.remove(note)
+            else:
+                note.move()
 
     def newNote(self):
         note = Note(self.app, self.center)

@@ -5,7 +5,7 @@ from pygame.locals import *
 from TwoCols import TwoCols
  
 class App:
-    t = .005
+    t = .003
     thing = 0
     def __init__(self):
         self._running = True
