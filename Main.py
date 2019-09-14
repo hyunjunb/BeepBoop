@@ -22,8 +22,8 @@ class App:
         self._display_surf.fill((255,255,255))
         self.twoCols = TwoCols(self)
         self._running = True
-        self.leftbutton = Clicker((255, 58, 44),(int(self.width/3), int(5*self.height/6)), pygame.K_z, self)
-        self.rightbutton = Clicker((255, 58, 44),(int(2*self.width/3), int(5*self.height/6)), pygame.K_z, self)
+        self.leftbutton = Clicker((255, 58, 44),(int(self.width/3), int(5*self.height/6)), pygame.K_z, self, self.twoCols.col1)
+        self.rightbutton = Clicker((255, 58, 44),(int(2*self.width/3), int(5*self.height/6)), pygame.K_z, self, self.twoCols.col2)
  
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -33,9 +33,8 @@ class App:
                 self.leftbutton.click()
             if event.key == pygame.K_RIGHT:
                 self.rightbutton.click()
-                
-                
-
+            if event.key == pygame.K_ESCAPE:
+                self._running = False           
 
     def on_loop(self):
         pass
@@ -45,10 +44,8 @@ class App:
         self.twoCols.move()
         self.leftbutton.render()
         self.rightbutton.render()
-        time.sleep(self.t)
         pygame.display.flip()
         
-
     def on_cleanup(self):
         pygame.quit()
  

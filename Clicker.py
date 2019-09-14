@@ -4,9 +4,9 @@ import pygame
 
 class Clicker:
 	time = 0
-	limit = 30
+	limit = 1000
 
-	def __init__(self, color, position, key, app):
+	def __init__(self, color, position, key, app, col):
 		#red = (255, 58, 44); green = (27, 239, 104)
 		#key = the button it should be mapped to
 		#pygame.K_LEFT, pygame.K_RIGHT
@@ -14,11 +14,22 @@ class Clicker:
 		self.key = key
 		self.app = app
 		self.color = color
+		self.col = col
 		self.clicked = False
-
+		self.badClick = False
+		
 	def click(self):	
-		self.clicked = True
-		self.time = 0
+		for note in self.col.notes:
+			if abs(note.ypos - self.position[1]) < 20:
+				self.clicked = True
+				self.time = 0
+				pygame.mixer.music.load('beep-02.mp3')
+				pygame.mixer.music.play(0)
+				self.col.notes.remove(note)
+				break
+		if self.clicked == False:
+			self.badClick = True
+			self.time = 0
 		# while True:
 		# 	for event in pygame.event.get():
 		# 		if event.type == pygame.QUIT:
@@ -35,5 +46,11 @@ class Clicker:
 			self.time += 1
 			if self.time > self.limit:
 				self.clicked = False
+			self.badClick = False
+		elif self.badClick == True:
+			pygame.draw.circle(self.app._display_surf, (0,0,0), self.position, 40)
+			self.time += 1
+			if self.time > self.limit:
+				self.badClick = False
 
 
