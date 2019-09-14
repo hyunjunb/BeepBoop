@@ -17,7 +17,7 @@ class TwoCols:
         self.col1.move()
         self.col2.move()
         self.thing += 1
-        if self.thing % 3000 == 0:
+        if self.thing % 400 == 0:
             self.generateNewNotes()
 
     def generateNewNotes(self):

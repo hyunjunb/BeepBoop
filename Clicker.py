@@ -20,13 +20,20 @@ class Clicker:
 		
 	def click(self):	
 		for note in self.col.notes:
-			if abs(note.ypos - self.position[1]) < 20:
+			if abs(note.ypos - self.position[1]) < 40:
 				self.clicked = True
 				self.time = 0
-				pygame.mixer.music.load('beep-02.mp3')
-				pygame.mixer.music.play(0)
+				if self.key == pygame.K_LEFT:
+					pygame.mixer.music.load('beep.mp3')
+					pygame.mixer.music.play(0)
+				else:
+					pygame.mixer.music.load('boop.mp3')
+					pygame.mixer.music.play(0)
 				self.col.notes.remove(note)
 				break
+			else:
+				pygame.mixer.music.load('wait.mp3')
+				pygame.mixer.music.play(0)
 		if self.clicked == False:
 			self.badClick = True
 			self.time = 0
