@@ -12,14 +12,17 @@ class Clicker:
 		self.key = key
 		self.app = app
 		self.color = color
+		self.clicked = False
 
 	def click(self):
-		self.button = pygame.draw.circle(self.app._display_surf, self.color, self.position, 20)
+		self.button = pygame.draw.circle(self.app._display_surf, self.color, self.position, 40)
+		if self.clicked:
+			pygame.draw.circle(screen, (27, 239, 104), position, 40)
 		while True:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					pygame.quit();
 				elif event.type == pygame.KEYDOWN:
 					if event.key == self.key:
-						pygame.draw.circle(screen, (27, 239, 104), position, 40)
+						self.clicked = True
 						#button is clicked. check for overlap
