@@ -5,6 +5,7 @@ from pygame.locals import *
 from Clicker import Clicker
 from Column import Column
 from Note import Note
+from TwoCols import TwoCols
  
 class App:
     t = .005
@@ -17,11 +18,10 @@ class App:
  
     def on_init(self):
         pygame.init()
-        self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)      
+        self._display_surf = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self._display_surf.fill((255,255,255))
-        self.col = Column(int(self.width/3), self)
-        self.ol = Column(int(2*self.width/3), self)   
-
+        self.twoCols = TwoCols(self)
+        self._running = True
  
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -32,8 +32,7 @@ class App:
 
     def on_render(self):
         self._display_surf.fill(self.background_colour)
-        self.col.move()
-        self.ol.move()
+        self.twoCols.move()
         self.leftbutton = pygame.draw.circle(self._display_surf, (255, 58, 44), (100, 100), 20)
         time.sleep(self.t)
         pygame.display.flip()
